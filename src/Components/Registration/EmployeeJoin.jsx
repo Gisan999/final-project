@@ -1,32 +1,40 @@
 import { useState } from 'react';
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import { useForm } from 'react-hook-form';
 
 const EmployeeJoin = () => {
+    const { register, handleSubmit , reset} = useForm();
     const [date, setDate] = useState(new Date());
     const time = date.toLocaleDateString();
 
-    const handleSubmit = event => {
-        event.preventDefault();
-        console.log(time);
+    const onSubmit = data => {
+        const name = data.name
+        console.log(time, name);
     }
     return (
         <div className="mt-28 max-w-screen-xl mx-auto bg-blue-50">
             <div className="p-8 py-24 rounded border border-blue-300">    <h1 className="font-medium text-3xl">Employee Recruitment Page</h1>
 
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="mt-8 grid lg:grid-cols-2 gap-4">
                         <div>
                             <label htmlFor="name" className="text-sm text-gray-700 block mb-1 font-medium">Full Name</label>
-                            <input type="text" name="name" id="name" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="Enter your name" />
+                            <input required type="text" name="name" 
+                             {...register("name")}
+                            id="name" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="Enter your name" />
                         </div>
                         <div>
                             <label htmlFor="email" className="text-sm text-gray-700 block mb-1 font-medium">Email Address</label>
-                            <input type="text" name="email" id="email" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="yourmail@provider.com" />
+                            <input required type="text" name="email" 
+                             {...register("email")}
+                            id="email" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="yourmail@provider.com" />
                         </div>
                         <div>
                             <label htmlFor="job" className="text-sm text-gray-700 block mb-1 font-medium">Password</label>
-                            <input type="text" name="job" id="job" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="Your Password" />
+                            <input required type="text" name="job" 
+                             {...register("password")}
+                            id="job" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="Your Password" />
                         </div>
                         <div className=' relative'>
                             <label htmlFor="birthday" className="text-sm text-gray-700 block mb-1 font-medium">Birth-Date</label>
@@ -41,7 +49,7 @@ const EmployeeJoin = () => {
                         </div>
                     </div>
                     <div className=" mt-8">
-                        <button type="submit" className="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 active:bg-blue-700 disabled:opacity-50 w-full">Save</button>
+                        <button type="submit" className="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 active:bg-blue-700 disabled:opacity-50 w-full">Apply</button>
 
 
                     </div>

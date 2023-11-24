@@ -41,7 +41,6 @@ const Registration = () => {
                                     className="w-full border rounded-lg border-b-4 border-blue-400 p-4 pe-12 text-sm shadow-sm"
                                     placeholder="Your Name"
                                 />
-
                                 <span className="absolute inset-y-0 end-0 grid text-gray-400 place-content-center px-4">
                                     <FaFont></FaFont>
                                 </span>
