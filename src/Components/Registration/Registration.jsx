@@ -1,12 +1,16 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaCamera, FaEye, FaEyeSlash, FaFont, } from "react-icons/fa";
 // import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
+import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Registration = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const { registerUser, userUpdate } = useAuth();
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const navigate = useNavigate();
 
     const handleRegistration = data => {
         const email = data.email;
@@ -15,6 +19,25 @@ const Registration = () => {
         const name = data.name;
         // const check = event.target.terms.checked
         console.log(name, photo, email, password);
+        registerUser(email, password)
+            .then(result => {
+                console.log(result);
+                userUpdate(name, photo)
+                    .then(result => {
+                        console.log(result);
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Registration Successfully",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        navigate('/');
+
+                    })
+                    .catch(error => console.error(error));
+            })
+            .catch(error => console.error(error));
 
 
     }
@@ -73,7 +96,7 @@ const Registration = () => {
                                     className="w-full border rounded-lg border-b-4 border-blue-400 p-4 pe-12 text-sm shadow-sm"
                                     placeholder="Enter email"
                                 />
-                               
+
 
                                 <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
                                     <svg
@@ -115,12 +138,12 @@ const Registration = () => {
                                     }
                                 </span>
 
-                              
+
 
 
                             </div>
                             <div className="mt-3">
-                            {errors.password?.type === 'required' && <p className="text-red-600">Password is required</p>}
+                                {errors.password?.type === 'required' && <p className="text-red-600">Password is required</p>}
                                 {errors.password?.type === 'minLength' && <p className="text-red-600">Password must be 6 characters</p>}
                                 {errors.password?.type === 'pattern' && <p className="text-red-600">Password must have one uppercase, one lowercase, <br /> one number and one special  characters</p>}
                             </div>

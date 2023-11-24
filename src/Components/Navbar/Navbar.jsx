@@ -1,12 +1,38 @@
+import { Avatar, Dropdown } from "flowbite-react";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
+    const { user, logOut } = useAuth();
+    const navigate = useNavigate();
+
+
+    const handleLogOut = () => {
+        logOut()
+            .then(res => {
+                console.log(res);
+                navigate('/')
+                Swal.fire({
+                    position: 'center',
+                    title: 'Successfully Logout ',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 2000
+                })
+            })
+            .catch()
+    }
+
     const navbar = <>
         <li><Link>Home</Link></li>
         <li><Link to={'/employeeJoin'}>Join As Employee</Link></li>
         <li><Link to={'/adminJoin'}>Join As Admin</Link></li>
-        <li><Link to={"/login"}>Login</Link></li>
+     {
+        user ?   <li onClick={handleLogOut}><Link>Logout</Link></li>: <li><Link to={"/login"}>Login</Link></li>
+     }
+     
     </>
 
     const [scrollValue, setScrollValue] = useState(0);
@@ -36,7 +62,32 @@ const Navbar = () => {
                                 {navbar}
                             </ul>
                         </div>
+                    <div>
+                        <img className="h-14 w-14 rounded-full" src={user?.photoURL} alt="" />
                     </div>
+                    </div>
+                 {/* {
+                    user ? 
+                    <div className="flex md:order-2 gap-2">
+                    <Dropdown
+                        arrowIcon={false}
+                        inline
+                        label={
+                            <Avatar alt="User settings" img={user?.photoURL} rounded />
+                        }
+                    >
+                        <Dropdown.Header>
+                            <span className="block text-sm">{user?.displayName}</span>
+                            <span className="block truncate text-sm font-medium">{user?.email}</span>
+                        </Dropdown.Header>
+                        <Dropdown.Divider />
+                        <Dropdown.Item onClick={handleLogOut}>Sign out</Dropdown.Item>
+                    </Dropdown>
+                    <Navbar.Toggle />
+                </div>
+                :
+                ''
+                 } */}
 
                 </div>
                 <div className="drawer-side mt-16">

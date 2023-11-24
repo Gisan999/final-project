@@ -1,10 +1,47 @@
 import { useState } from "react";
 import {  FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { MdAlternateEmail } from "react-icons/md";
+import { useForm } from "react-hook-form";
+import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const {register,  handleSubmit, formState: { errors }} = useForm();
+    const { logIn, setLoading} = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const onSubmit = data => {
+        const email = data.email;
+        const password = data.password;
+        console.log(email, password)
+        logIn(email, password)
+        .then(result => {
+            console.log(result);
+            Swal.fire({
+                position: 'top-right',
+                title: `success`,
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 2000
+            })
+            navigate(location?.state ? location.state : '/');
+        })
+        .catch(error => {
+            console.log(error);
+            setLoading(false)
+            Swal.fire({
+                position: 'top-right',
+                title: `email and password dose not match`,
+                icon: 'warning',
+                showConfirmButton: false,
+                timer: 2000
+            })
+        });
+        
+    }
 
     return (
         <div>
@@ -15,16 +52,20 @@ const Login = () => {
                             <div className="flex flex-col flex-1 justify-center mb-8">
                                 <h1 className="text-4xl text-center font-thin">Please Login</h1>
                                 <div className="w-full mt-4">
-                                    <form className="form-horizontal w-3/4 mx-auto" method="POST" action="#">
+                                    <form onSubmit={handleSubmit(onSubmit)} className="form-horizontal w-3/4 mx-auto" method="POST" action="#">
                                         <div className="flex flex-col mt-4 relative">
-                                            <input id="email" type="text" className="flex-grow h-8 px-2 border rounded border-b-2  border-blue-400" name="email" value="" placeholder="Email" />
-                                            <span onClick={() => setShowPassword(!showPassword)} className="absolute inset-y-0 end-0 grid text-gray-400 place-content-center px-4">
+                                            <input type="email" 
+                                             {...register("email", { required: true })}
+                                            className="flex-grow h-8 px-2 border rounded border-b-2  border-blue-400" name="email" placeholder="Email" />
+                                            <span className="absolute inset-y-0 end-0 grid text-gray-400 place-content-center px-4">
 
                                                <MdAlternateEmail></MdAlternateEmail>
                                             </span>
                                         </div>
                                         <div className="flex flex-col mt-4 relative">
-                                            <input id="password" type={showPassword ? "text" : "password"} className="flex-grow h-8 px-2 rounded border border-b-2  border-blue-400 " name="password" required placeholder="Password" />
+                                            <input id="password" type={showPassword ? "text" : "password"} 
+                                             {...register("password", { required: true })}
+                                            className="flex-grow h-8 px-2 rounded border border-b-2  border-blue-400 " name="password" required placeholder="Password" />
                                             <span onClick={() => setShowPassword(!showPassword)} className="absolute inset-y-0 end-0 grid text-gray-400 place-content-center px-4">
 
                                                 {
