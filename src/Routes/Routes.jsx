@@ -5,11 +5,13 @@ import Login from "../Components/Login/Login";
 import Registration from "../Components/Registration/Registration";
 import EmployeeJoin from "../Components/Registration/EmployeeJoin";
 import AdminJoin from "../Components/Registration/AdminJoin";
+import ErrorPage from "../Components/ErrorPage/ErrorPage";
 
 const Routes = createBrowserRouter([
     {
         path: "/",
         element: <Root />,
+        errorElement:<ErrorPage></ErrorPage>,
         children: [
             {
                 path: "/",
