@@ -5,6 +5,7 @@ import { MdAlternateEmail } from "react-icons/md";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import SocialLogin from "./SocialLogin";
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -47,12 +48,12 @@ const Login = () => {
         <div>
             <div className="bg-blue-400 py-28  md:py-32 lg:py-40">
                 <div className="flex flex-col items-center flex-1 h-full justify-center px-4 sm:px-0">
-                    <div className="flex rounded-lg shadow-lg w-full sm:w-3/4 lg:w-3/4 bg-white sm:mx-0 h-96 md:h-[400px] lg:h-[600px] " >
+                    <div className="flex rounded-lg shadow-lg w-full sm:w-3/4 lg:w-3/4 bg-white sm:mx-0  " >
                         <div className="flex flex-col w-full md:w-1/2 p-4">
                             <div className="flex flex-col flex-1 justify-center mb-8">
                                 <h1 className="text-4xl text-center font-thin">Please Login</h1>
                                 <div className="w-full mt-4">
-                                    <form onSubmit={handleSubmit(onSubmit)} className="form-horizontal w-3/4 mx-auto" method="POST" action="#">
+                                    <form onSubmit={handleSubmit(onSubmit)} className="form-horizontal w-3/4 mx-auto space-y-8" method="POST" action="#">
                                         <div className="flex flex-col mt-4 relative">
                                             <input type="email" 
                                              {...register("email", { required: true })}
@@ -82,6 +83,10 @@ const Login = () => {
                                             </button>
                                         </div>
                                     </form>
+                                    <div className="divider divider-info my-5 lg:my-12">Or</div>
+
+                                    <SocialLogin/>
+                                   
                                     <div>
                                         <p className="text-center py-6">Don`t Have an account <Link to={'/registration'}><span className="font-semibold hover:underline hover:text-blue-500">Register</span></Link></p>
                                     </div>
@@ -91,7 +96,7 @@ const Login = () => {
                         <div className="hidden md:block md:w-1/2 rounded-r-lg "
                         //  style={{background: `url('https://images.unsplash.com/photo-1515965885361-f1e0095517ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3300&q=80')`}}
                         >
-                            <img className="w-full h-full" src="https://images.pexels.com/photos/4491469/pexels-photo-4491469.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="" />
+                            <img className="w-full h-[550px] lg:h-[700px] " src="https://images.pexels.com/photos/4491469/pexels-photo-4491469.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="" />
 
 
                         </div>

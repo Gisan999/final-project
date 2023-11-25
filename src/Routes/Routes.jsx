@@ -6,6 +6,7 @@ import Registration from "../Components/Registration/Registration";
 import EmployeeJoin from "../Components/Registration/EmployeeJoin";
 import AdminJoin from "../Components/Registration/AdminJoin";
 import ErrorPage from "../Components/ErrorPage/ErrorPage";
+import About from "../Components/About/About";
 
 const Routes = createBrowserRouter([
     {
@@ -32,7 +33,12 @@ const Routes = createBrowserRouter([
             {
                 path: "/adminJoin",
                 element: <AdminJoin/>
+            },
+            {
+                path:"/about",
+                element: <About/>
             }
+
         ]
     }
 ])

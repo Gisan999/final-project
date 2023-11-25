@@ -15,7 +15,7 @@ const AdminJoin = () => {
         console.log(time, name);
     }
     return (
-        <div className="mt-28 max-w-screen-xl mx-auto bg-blue-50">
+        <div className="mt-48 my-20 max-w-screen-xl mx-auto bg-blue-50">
             <div className="p-8 py-24 rounded border border-blue-300">    <h1 className="font-medium text-3xl">Admin Recruitment Page</h1>
 
                 <form onSubmit={handleSubmit(onSubmit)}>
