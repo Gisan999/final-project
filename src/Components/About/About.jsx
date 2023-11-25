@@ -38,7 +38,7 @@ const About = () => {
 
                         <div className="">
                             <div className="chat chat-end relative ">
-                                <div className="chat-bubble absolute top-0 left-0 text-5xl font-bold bg-blue-500">1.</div>
+                                <div className="chat-bubble absolute top-0 left-0 text-5xl font-bold bg-teal-500">1.</div>
                                 <div className="pl-24">
                                     <h5 className="text-2xl py-3 text-white font-semibold">Strategic Growth Advantage</h5>
                                     <h3 className="text-white text-xl font-medium pb-4">Accelerated Wealth Expansion Strategies</h3>
@@ -83,7 +83,7 @@ const About = () => {
                                     <h2 className="text-gray-400 ">Experience a personalized approach to asset management with Blueharb. Our dedicated team crafts bespoke financial <br /> <br /> solutions that align with your  goals and aspirations. Enjoy the confidence of    assets are managed with a keen understanding of your unique financial journey.</h2>
                                     <div className="flex justify-start mt-4 md:mt-5 lg:mt-12">
 
-                                        <Link to={'/about'}><button className="btn uppercase font-bold border-0 border-b-4 bg-opacity-50 bg-black text-white border-blue-500 hover:border-b-4 hover:border-black hover:bg-blue-500 hover:bg-opacity-50 px-12">Read More</button></Link>
+                                        <Link to={'/about'}><button className="btn uppercase font-bold border-0 border-b-4 bg-opacity-50 bg-black text-white border-teal-500 hover:border-b-4 hover:border-black hover:bg-blue-500 hover:bg-opacity-50 px-12">Read More</button></Link>
 
                                     </div>
                                 </div>

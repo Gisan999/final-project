@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {  NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import logo from '../../assets/download.png'
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
@@ -97,7 +98,14 @@ const Navbar = () => {
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-6 h-6 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                             </label>
                         </div>
-                        <div className="flex-1 px-2 mx-2 font-bold font-mono text-xl tracking-wider"> BLUEH  <span className=" text-blue-500"> <sup className="text-2xl font-bold ">A</sup> </span>  RB </div>
+
+
+                    
+                        <div className="flex-1 px-2 mx-2 ">
+                            <img className="w-60" src={logo} alt="" />
+                        </div>
+
+
                         <div className="flex-none hidden lg:block">
                             <ul className="menu menu-horizontal">
                                 {navbar}
@@ -105,7 +113,7 @@ const Navbar = () => {
                         </div>
 
                         {user ? <div className="dropdown dropdown-bottom dropdown-end dropdown-hover">
-                            <div tabIndex={0} className="btn btn-lg rounded-full bg-blue-500 bg-opacity-50 hover:bg-blue-700 text-white pl-5 gap-5 ">
+                            <div tabIndex={0} className="btn btn-lg rounded-full bg-teal-500 bg-opacity-50 hover:bg-blue-700 text-white pl-5 gap-5 ">
                                 <p className="text-sm hidden md:block">{user?.displayName}</p>
                                 <img className="h-12 w-12 rounded-full" src={user?.photoURL} alt="" />
                             </div>

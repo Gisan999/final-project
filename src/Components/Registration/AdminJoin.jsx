@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useForm } from "react-hook-form";
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import { Helmet } from 'react-helmet-async';
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
@@ -15,7 +16,11 @@ const AdminJoin = () => {
         console.log(time, name);
     }
     return (
-        <div className="mt-48 my-20 max-w-screen-xl mx-auto bg-blue-50">
+      <div className=''>
+        <Helmet>
+            <title>Blueharb | join admin</title>
+        </Helmet>
+          <div className="mt-48 my-20 max-w-screen-xl mx-auto bg-blue-50">
             <div className="p-8 py-24 rounded border border-blue-300">    <h1 className="font-medium text-3xl">Admin Recruitment Page</h1>
 
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -69,6 +74,7 @@ const AdminJoin = () => {
                 </form>
             </div>
         </div>
+      </div>
     );
 };
 

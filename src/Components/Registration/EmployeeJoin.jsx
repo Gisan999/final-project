@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 
 const EmployeeJoin = () => {
@@ -14,6 +15,9 @@ const EmployeeJoin = () => {
     }
     return (
         <div className="mt-48 mb-24 max-w-screen-xl mx-auto bg-blue-50">
+            <Helmet>
+                <title>Blueharb | join employee</title>
+            </Helmet>
             <div className="p-8 py-24 rounded border border-blue-300">    <h1 className="font-medium text-3xl">Employee Recruitment Page</h1>
 
                 <form onSubmit={handleSubmit(onSubmit)}>

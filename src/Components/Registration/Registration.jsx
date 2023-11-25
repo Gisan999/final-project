@@ -5,6 +5,7 @@ import { FaCamera, FaEye, FaEyeSlash, FaFont, } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const Registration = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -46,6 +47,9 @@ const Registration = () => {
 
     return (
         <div>
+             <Helmet>
+                <title>Blueharb | registration</title>
+            </Helmet>
             <section className="relative flex flex-wrap lg:h-screen lg:items-center mt-10 lg:mt-0">
                 <div className="w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24">
                     <div className="mx-auto max-w-lg text-center">
