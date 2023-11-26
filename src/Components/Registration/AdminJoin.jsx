@@ -19,23 +19,31 @@ const AdminJoin = () => {
 
 
     const onSubmit = async (data) => {
-        // console.log(value.value);
-        const name = data.name
-        const data2 = { time, name, logo: data.logo[0].name, package: value.value };
-        console.log(data2)
-
         const formData = new FormData();
         formData.append('image', data.logo[0])
         axios.post(image_hosting_api, formData)
             .then((res) => { console.log(res.data.data.display_url) })
+            
+
+        const number = value.value.split('$')[1];
+        const price = parseInt(number);
+
+
+        const name = data.name
+        const data2 = { time, name, price, logo: data.logo[0].name, package: value.value };
+        console.log(data2)
+
+
 
     }
+    // const ll = "10 members for $15";
+    // console.log(ll.split('$')[1]);
 
     const options = [
 
-        { value: '5 Members for $5', label: '5 Members for $5' },
-        { value: '10 Members for $8', label: '10 Members for $8' },
-        { value: '20 Members for $15', label: '20 Members for $15' }
+        { value: '5 Members for $ 5', label: '5 Members for $5' },
+        { value: '10 Members for $ 8', label: '10 Members for $8' },
+        { value: '20 Members for $ 15', label: '20 Members for $15' }
 
     ]
 
@@ -74,7 +82,8 @@ const AdminJoin = () => {
                             </div>
                             <div>
                                 <label htmlFor="job" className="text-sm text-gray-700 block mb-1 font-medium">Company Logo</label>
-                                <input required type="file"
+                                {/* TODO required */}
+                                <input type="file"
                                     {...register("logo")}
                                     className="bg-transparent border border-gray-400 rounded px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full file-input-md file-input" />
                             </div>

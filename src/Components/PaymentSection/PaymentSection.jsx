@@ -1,8 +1,20 @@
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import CheckOutForm from "./CheckOutForm";
 
+const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_GATEWAY);
 const PaymentSection = () => {
     return (
-        <div className="bg-black">
-            <div className="max-w-lg mx-auto py-24 pt-32 bg-black bg-opacity-50 text-white shadow-md rounded-md overflow-hidden ">
+        <div className="bg-amber-100 bg-opacity-50">
+
+            <div className="py-60">
+                <Elements stripe={stripePromise}>
+                    <CheckOutForm />
+                </Elements>
+            </div>
+
+
+            {/* <div className="max-w-lg mx-auto py-24 pt-32 bg-black bg-opacity-50 text-white shadow-md rounded-md overflow-hidden ">
                 <div className="bg-blue-600 text-white p-4 flex justify-between">
                     <div className="font-bold text-lg">Credit Card</div>
                     <div className="text-lg"><i className="fab fa-cc-visa"></i></div>
@@ -47,7 +59,7 @@ const PaymentSection = () => {
                         Card
                     </button>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };
