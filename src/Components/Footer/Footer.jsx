@@ -1,4 +1,4 @@
-
+import logo from '../../assets/Screenshot 2023-11-25 184339.png'
 
 const Footer = () => {
     return (
@@ -12,10 +12,10 @@ const Footer = () => {
                 <div className="mx-auto w-full container p-4 py-6 lg:py-8">
                     <div className="md:flex md:justify-between">
                         <div className="mb-6 md:mb-0">
-                            <a href="https://flowbite.com/" className="flex items-center">
-                                <img src="https://icon2.cleanpng.com/20180820/hve/kisspng-portable-network-graphics-letter-logo-image-fuel-for-less-apk-indir-android-in-cretsiz-a-5b7b872b7ec2b8.7340680715348221875192.jpg" className="h-8 me-3" alt="FlowBite Logo" />
-                                <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">BlueHarb</span>
-                            </a>
+                            <div  className="flex items-center">
+                                <img src={logo} className="w-60 me-3" alt="FlowBite Logo" />
+                                
+                            </div>
                         </div>
                         <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
                             <div>

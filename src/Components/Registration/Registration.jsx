@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet";
+import SocialLogin from "../Login/SocialLogin";
 
 const Registration = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -40,17 +41,14 @@ const Registration = () => {
             })
             .catch(error => console.error(error));
 
-
     }
-
-
 
     return (
         <div>
              <Helmet>
                 <title>Blueharb | registration</title>
             </Helmet>
-            <section className="relative flex flex-wrap lg:h-screen lg:items-center mt-10 lg:mt-0">
+            <section className="relative flex flex-wrap lg:h-[1000px] lg:items-center mt-10 lg:mt-0">
                 <div className="w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24">
                     <div className="mx-auto max-w-lg text-center">
                         <h1 className="text-2xl font-bold sm:text-3xl">Registration Here</h1>
@@ -170,6 +168,8 @@ const Registration = () => {
                             </button>
                         </div>
                     </form>
+                    <div className="divider divider-info my-5 lg:my-12">Or</div>
+                    <SocialLogin></SocialLogin>
                 </div>
 
                 <div className="relative h-64 w-full sm:h-96 lg:h-full lg:w-1/2">

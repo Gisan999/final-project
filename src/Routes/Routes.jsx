@@ -7,6 +7,7 @@ import EmployeeJoin from "../Components/Registration/EmployeeJoin";
 import AdminJoin from "../Components/Registration/AdminJoin";
 import ErrorPage from "../Components/ErrorPage/ErrorPage";
 import About from "../Components/About/About";
+import PaymentSection from "../Components/PaymentSection/PaymentSection";
 
 const Routes = createBrowserRouter([
     {
@@ -37,6 +38,10 @@ const Routes = createBrowserRouter([
             {
                 path:"/about",
                 element: <About/>
+            },
+            {
+                path: "/payment",
+                element: <PaymentSection/>
             }
 
         ]

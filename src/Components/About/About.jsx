@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const About = () => {
     return (
         <div className="bg-black bg-opacity-90">
-            <div className="max-w-screen-xl mx-auto my-12 py-20">
+            <div className="max-w-screen-xl mx-auto  py-20">
 
                 <div className="px-8 lg:px-0">
                     <div>

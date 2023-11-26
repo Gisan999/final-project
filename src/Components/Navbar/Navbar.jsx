@@ -37,7 +37,58 @@ const Navbar = () => {
         >
             Home
         </NavLink></li>
+
+        {
+            user ? <>
+            <li className="text-base  "><NavLink
+            to="/"
+            style={({ isActive, isPending }) => {
+                return {
+                    fontWeight: isActive ? "bold" : "",
+                    color: isPending ? "red" : "white",
+                };
+            }}
+        >
+            My Assets
+        </NavLink></li>
         <li className="text-base  "><NavLink
+            to="/"
+            style={({ isActive, isPending }) => {
+                return {
+                    fontWeight: isActive ? "bold" : "",
+                    color: isPending ? "red" : "white",
+                };
+            }}
+        >
+            My Team
+        </NavLink></li>
+        <li className="text-base  "><NavLink
+            to="/"
+            style={({ isActive, isPending }) => {
+                return {
+                    fontWeight: isActive ? "bold" : "",
+                    color: isPending ? "red" : "white",
+                };
+            }}
+        >
+            Request Assets
+        </NavLink></li>
+        <li className="text-base  "><NavLink
+            to="/"
+            style={({ isActive, isPending }) => {
+                return {
+                    fontWeight: isActive ? "bold" : "",
+                    color: isPending ? "red" : "white",
+                };
+            }}
+        >
+           Custom Request 
+        </NavLink></li>
+            </> : ''
+        }
+
+       { user ? '':
+       <> <li className="text-base  "><NavLink
             to="/employeeJoin"
             style={({ isActive, isPending }) => {
                 return {
@@ -58,7 +109,8 @@ const Navbar = () => {
             }}
         >
             Join As Admin
-        </NavLink></li>
+        </NavLink></li> </>}
+
         {
             user ? '' :
 
@@ -92,7 +144,7 @@ const Navbar = () => {
                 <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col">
                     {/* Navbar */}
-                    <div className={`w-full lg:px-16 navbar ${scrollValue ? 'bg-black bg-opacity-50 text-white' : 'bg-slate-400 bg-opacity-50'} fixed z-20 text-white py-4`}>
+                    <div className={`w-full lg:px-16 navbar ${scrollValue ? 'bg-black bg-opacity-50 text-white border-b' : 'bg-slate-400 bg-opacity-50'} fixed z-20 text-white py-4`}>
                         <div className="flex-none lg:hidden">
                             <label htmlFor="my-drawer-3" aria-label="open sidebar" className="btn btn-square btn-ghost">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-6 h-6 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
@@ -102,7 +154,7 @@ const Navbar = () => {
 
                     
                         <div className="flex-1 px-2 mx-2 ">
-                            <img className="w-60" src={logo} alt="" />
+                            <img className="w-48 md:w-60" src={logo} alt="" />
                         </div>
 
 
