@@ -8,6 +8,8 @@ import AdminJoin from "../Components/Registration/AdminJoin";
 import ErrorPage from "../Components/ErrorPage/ErrorPage";
 import About from "../Components/About/About";
 import PaymentSection from "../Components/PaymentSection/PaymentSection";
+import AddAssetPage from "../Components/AddAssetPage/AddAssetPage";
+import AdminRoute from "./AdminRoute";
 
 const Routes = createBrowserRouter([
     {
@@ -42,6 +44,11 @@ const Routes = createBrowserRouter([
             {
                 path: "/payment",
                 element: <PaymentSection/>
+            },
+            // Admin routes
+            {
+                path: "/addAsset",
+                element:<AdminRoute><AddAssetPage/></AdminRoute>
             }
 
         ]

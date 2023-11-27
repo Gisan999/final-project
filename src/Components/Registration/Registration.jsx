@@ -1,164 +1,144 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { FaCamera, FaEye, FaEyeSlash, FaFont, } from "react-icons/fa";
-// import Swal from "sweetalert2";
-import { useForm } from "react-hook-form";
-import useAuth from "../../Hooks/useAuth";
-import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import { Controller, useForm } from "react-hook-form";
 import { Helmet } from "react-helmet";
-import SocialLogin from "../Login/SocialLogin";
+import img from '../../assets/360_F_424657834_zM6fbarQSdFPee6C3w2WPksPCo7Rz5so-transformed.png'
+import axios from "axios";
+
+
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
 const Registration = () => {
-    const [showPassword, setShowPassword] = useState(false);
-    const { registerUser, userUpdate } = useAuth();
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { control, register, handleSubmit } = useForm();
     const navigate = useNavigate();
 
-    const handleRegistration = data => {
-        const email = data.email;
-        const password = data.password;
-        const photo = data.photo;
-        const name = data.name;
+    const handleRequest = async data => {
+        const assetName = data.assetName;
+        const price = data.price;
+        const assetType = data.assetType;
+        const needDescription = data.needDescription;
+        const information = data.information;
         // const check = event.target.terms.checked
-        console.log(name, photo, email, password);
-        registerUser(email, password)
-            .then(result => {
-                console.log(result);
-                userUpdate(name, photo)
-                    .then(result => {
-                        console.log(result);
-                        Swal.fire({
-                            position: "top-end",
-                            icon: "success",
-                            title: "Registration Successfully",
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                        navigate('/');
+        
+        const formData = new FormData();
+        formData.append('image', data.assetImage[0])
+        const res = await axios.post(image_hosting_api, formData)
+        
+        const assetImage = res.data.data.display_url;
 
-                    })
-                    .catch(error => console.error(error));
-            })
-            .catch(error => console.error(error));
-
+        const requestData = {
+            assetName,
+            price,
+            assetType,
+            assetImage,
+            needDescription,
+            information
+        }
+        console.log(requestData);
     }
 
     return (
-        <div>
-             <Helmet>
-                <title>Blueharb | registration</title>
+        <div className="max-w-screen-xl mx-auto my-24 bg-gray-100 p-6 rounded-3xl">
+            <Helmet>
+                <title>Blueharb | Custom Request</title>
             </Helmet>
-            <section className="relative flex flex-wrap lg:h-[1000px] lg:items-center mt-10 lg:mt-0">
-                <div className="w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24">
+            <section className="relative mt-10 lg:mt-0">
+                <div className="w-full px-4 py-12 ">
                     <div className="mx-auto max-w-lg text-center">
-                        <h1 className="text-2xl font-bold sm:text-3xl">Registration Here</h1>
+                        <h1 className="text-2xl font-bold sm:text-3xl">Create Your Custom Request Here</h1>
 
                     </div>
-
-                    <form onSubmit={handleSubmit(handleRegistration)} action="" className="mx-auto mb-0 mt-8 max-w-md space-y-8">
+                    <form onSubmit={handleSubmit(handleRequest)} action="" className="grid grid-cols-1  lg:grid-cols-2 gap-10 mt-12">
                         <div>
-
-                            <div className="relative">
-                                <input
+                            <label htmlFor="name" className="text-sm text-gray-700 block mb-1 font-medium">Asset Name</label>
+                            <div className="">
+                                <input required
                                     type="text"
-                                    name="name"
-                                    {...register("name", { required: true })}
-                                    className="w-full border rounded-lg border-b-4 border-blue-400 p-4 pe-12 text-sm shadow-sm"
-                                    placeholder="Your Name"
+                                    name="assetName"
+                                    {...register("assetName")}
+                                    className="w-full border rounded-lg border-b-4 border-blue-400 p-3 pe-12 text-sm shadow-sm"
+                                    placeholder="Asset Name"
                                 />
-                                <span className="absolute inset-y-0 end-0 grid text-gray-400 place-content-center px-4">
-                                    <FaFont></FaFont>
-                                </span>
+
                             </div>
-                            {errors.name && <span className="text-red-600">Name is required</span>}
+
                         </div>
                         <div>
-
-                            <div className="relative">
-                                <input
+                            <label htmlFor="name" className="text-sm text-gray-700 block mb-1 font-medium">Price</label>
+                            <div className="">
+                                <input required
                                     type="text"
-                                    name="photo"
-                                    {...register("photo", { required: true })}
-                                    className="w-full border rounded-lg border-b-4 border-blue-400 p-4 pe-12 text-sm shadow-sm"
-                                    placeholder="Photo URL"
+                                    name="price"
+                                    {...register("price")}
+                                    className="w-full border rounded-lg border-b-4 border-blue-400 p-3 pe-12 text-sm shadow-sm"
+                                    placeholder="price"
                                 />
 
-                                <span className="absolute inset-y-0 end-0 grid text-gray-400 place-content-center px-4">
-                                    <FaCamera></FaCamera>
-                                </span>
                             </div>
                         </div>
                         <div>
+                            <label htmlFor="name" className="text-sm text-gray-700 block mb-1 font-medium">Asset Type</label>
+                            <div className="">
 
-                            <div className="relative">
-                                <input
-                                    type="email"
-                                    name="email"
-                                    {...register("email", { required: true })}
-                                    className="w-full border rounded-lg border-b-4 border-blue-400 p-4 pe-12 text-sm shadow-sm"
-                                    placeholder="Enter email"
-                                />
+                                <select   {...register("assetType")} className=" w-full border rounded-lg p-3 border-b-4 border-blue-400  pe-12 text-sm shadow-sm">
+                                    <option disabled selected>Pic One</option>
+                                    <option>Returnable</option>
+                                    <option>Non-returnable</option>
+                                </select>
 
 
-                                <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="h-4 w-4 text-gray-400"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth="2"
-                                            d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
-                                        />
-                                    </svg>
-                                </span>
                             </div>
-                            {errors.email && <span className="text-red-600">Email is required</span>}
+
                         </div>
 
                         <div>
+                            <label htmlFor="name" className="text-sm text-gray-700 block mb-1 font-medium">Asset Image</label>
 
-                            <div className="relative">
-                                <input
-                                    type={showPassword ? "text" : "password"}
-                                    name="password"
-                                    {...register("password", {
-                                        required: true, minLength: 6, maxLength: 22,
-                                        pattern: /(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])/
-                                    })}
-                                    className="w-full border rounded-lg border-b-4 border-blue-400 p-4 pe-12 text-sm shadow-sm"
-                                    placeholder="Enter password"
+                            <div className="">
+                                <input required
+                                    type="file"
+                                    {...register("assetImage")}
+                                    className="w-full border rounded-lg border-b-4  border-blue-400 file-input-md file-input pe-12 text-sm shadow-sm"
                                 />
-                                <span onClick={() => setShowPassword(!showPassword)} className="absolute inset-y-0 end-0 grid text-gray-400 place-content-center px-4">
-
-                                    {
-                                        showPassword ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>
-                                    }
-                                </span>
-
-
-
 
                             </div>
-                            <div className="mt-3">
-                                {errors.password?.type === 'required' && <p className="text-red-600">Password is required</p>}
-                                {errors.password?.type === 'minLength' && <p className="text-red-600">Password must be 6 characters</p>}
-                                {errors.password?.type === 'pattern' && <p className="text-red-600">Password must have one uppercase, one lowercase, <br /> one number and one special  characters</p>}
+
+                        </div>
+
+                        <div>
+                            <label htmlFor="name" className="text-sm text-gray-700 block mb-1 font-medium">Why you need this</label>
+                            <div className="">
+                            <Controller
+                                    name="needDescription"
+                                    
+                                    control={control}
+                                    defaultValue=""  render={({ field }) => <textarea className="w-full border rounded-lg border-b-4 border-blue-400 p-3 pe-12 text-sm shadow-sm" {...field} placeholder="Why you need this" rows={3} />}
+                                />
+
+
+
                             </div>
                         </div>
-                        <div className="flex items-center mt-4">
-                            <input type="checkbox" name="terms" id="remember" className="mr-2" /> <label htmlFor="remember" className="text-sm text-grey-dark">Accept Our <span className="text-lg font-semibold hover:underline hover:text-blue-500">Terms And Conditions</span></label>
+                        <div>
+                            <label htmlFor="name" className="text-sm text-gray-700 block mb-1 font-medium">Additional information</label>
+                            <div className="">
+
+
+                                <Controller
+                                    name="information"
+                                    
+                                    control={control}
+                                    defaultValue=""  render={({ field }) => <textarea className="w-full border rounded-lg border-b-4 border-blue-400 p-3 pe-12 text-sm shadow-sm" {...field} placeholder="Additional information" rows={3} />}
+                                />
+
+
+
+                                {/* <textarea  placeholder="Additional information"  {...register("information")} name="" id="" cols="30" rows="3" className="w-full border rounded-lg border-b-4 border-blue-400 p-3 pe-12 text-sm shadow-sm"></textarea> */}
+
+                            </div>
                         </div>
 
                         <div className="flex items-center justify-between">
-                            <p className="text-sm text-gray-500">
-                                No account?
-                                <Link to={"/login"}> <span className="font-semibold hover:underline hover:text-blue-500">Log In</span></Link>
-                            </p>
 
                             <button
                                 type="submit"
@@ -168,17 +148,19 @@ const Registration = () => {
                             </button>
                         </div>
                     </form>
-                    <div className="divider divider-info my-5 lg:my-12">Or</div>
-                    <SocialLogin></SocialLogin>
+                    <div className="divider divider-info my-5 lg:my-12">
+
+                        <img className="w-48" src={img} alt="" />
+                    </div>
                 </div>
 
-                <div className="relative h-64 w-full sm:h-96 lg:h-full lg:w-1/2">
+                {/* <div className="relative h-64 w-full sm:h-96 lg:h-full lg:w-1/2">
                     <img
                         alt="Welcome"
                         src="https://images.pexels.com/photos/8297226/pexels-photo-8297226.jpeg?auto=compress&cs=tinysrgb&w=1600"
                         className="absolute inset-0 h-full w-full object-cover"
                     />
-                </div>
+                </div> */}
             </section>
         </div>
     );

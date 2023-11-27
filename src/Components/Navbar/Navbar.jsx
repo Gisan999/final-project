@@ -64,7 +64,7 @@ const Navbar = () => {
                     Asset List
                 </NavLink></li>
                 <li className="text-base  "><NavLink
-                    to="/"
+                    to="/addAsset"
                     style={({ isActive, isPending }) => {
                         return {
                             fontWeight: isActive ? "bold" : "",
@@ -122,7 +122,7 @@ const Navbar = () => {
                     Request Assets
                 </NavLink></li>
                 <li className="text-base  "><NavLink
-                    to="/"
+                    to="/registration"
                     style={({ isActive, isPending }) => {
                         return {
                             fontWeight: isActive ? "bold" : "",
