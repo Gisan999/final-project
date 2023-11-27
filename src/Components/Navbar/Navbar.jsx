@@ -173,11 +173,11 @@ const Navbar = () => {
                             <div tabIndex={0} className="dropdown-content z-[1] card card-compact w-96  shadow  text-primary-content">
                                 <div className="card-body">
                                     <div className="bg-gray-100  flex items-center justify-center p-2">
-                                        <div className="bg-white p-6 rounded-lg shadow-md max-w-md w-full">
+                                        <div className="bg-white p-3 rounded-lg shadow-md max-w-lg w-full">
                                             <div className="relative">
                                                 <div>
 
-                                                    <img src={user?.photoURL} alt="Banner Profile" className="w-full rounded-t-lg h-28 " />
+                                                    <img src={user?.photoURL} alt="Banner Profile" className="w-full rounded-t-lg h-36 " />
                                                 </div>
                                                 <img src={user?.photoURL} alt="Profile Picture" className="absolute bottom-0 left-2/4 transform -translate-x-1/2 translate-y-1/2 w-24 h-24 rounded-full border-4 border-white" />
                                             </div>

@@ -60,6 +60,8 @@ const PaymentSection = () => {
                     </button>
                 </div>
             </div> */}
+
+            
         </div>
     );
 };

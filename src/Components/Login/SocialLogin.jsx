@@ -3,7 +3,6 @@ import useAuth from "../../Hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import axios from "axios";
 
 const SocialLogin = () => {
     const axiosPublic = useAxiosPublic();
@@ -20,7 +19,7 @@ const SocialLogin = () => {
                     name: result.user?.displayName,
                     role
                 }
-                axios.post('http://localhost:5000/set/users', userInfo)
+                axiosPublic.post('/set/users', userInfo)
                     .then(res => {
                         console.log(res.data);
                         navigate('/')
