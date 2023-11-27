@@ -1,13 +1,23 @@
 import { useEffect, useState } from "react";
-import {  NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import logo from '../../assets/download.png'
+import useAdmin from "../../Hooks/useAdmin";
 
 const Navbar = () => {
-    const { user, logOut } = useAuth();
-    const navigate = useNavigate();
+    const [scrollValue, setScrollValue] = useState(0);
+    const scrollEvent = () => {
+        setScrollValue(window.scrollY)
+    }
+    useEffect(() => {
+        const scroll = window.addEventListener("scroll", scrollEvent);
+        return () => scroll;
+    }, [])
 
+    const { user, logOut } = useAuth();
+    const [isAdmin] = useAdmin();
+    const navigate = useNavigate();
 
     const handleLogOut = () => {
         logOut()
@@ -38,78 +48,115 @@ const Navbar = () => {
             Home
         </NavLink></li>
 
-        {
-            user ? <>
-            <li className="text-base  "><NavLink
-            to="/"
-            style={({ isActive, isPending }) => {
-                return {
-                    fontWeight: isActive ? "bold" : "",
-                    color: isPending ? "red" : "white",
-                };
-            }}
-        >
-            My Assets
-        </NavLink></li>
-        <li className="text-base  "><NavLink
-            to="/"
-            style={({ isActive, isPending }) => {
-                return {
-                    fontWeight: isActive ? "bold" : "",
-                    color: isPending ? "red" : "white",
-                };
-            }}
-        >
-            My Team
-        </NavLink></li>
-        <li className="text-base  "><NavLink
-            to="/"
-            style={({ isActive, isPending }) => {
-                return {
-                    fontWeight: isActive ? "bold" : "",
-                    color: isPending ? "red" : "white",
-                };
-            }}
-        >
-            Request Assets
-        </NavLink></li>
-        <li className="text-base  "><NavLink
-            to="/"
-            style={({ isActive, isPending }) => {
-                return {
-                    fontWeight: isActive ? "bold" : "",
-                    color: isPending ? "red" : "white",
-                };
-            }}
-        >
-           Custom Request 
-        </NavLink></li>
-            </> : ''
-        }
 
-       { user ? '':
-       <> <li className="text-base  "><NavLink
-            to="/employeeJoin"
-            style={({ isActive, isPending }) => {
-                return {
-                    fontWeight: isActive ? "bold" : "",
-                    color: isPending ? "red" : "white",
-                };
-            }}
-        >
-            Join As Employee
-        </NavLink></li>
-        <li className="text-base  "><NavLink
-            to="/adminJoin"
-            style={({ isActive, isPending }) => {
-                return {
-                    fontWeight: isActive ? "bold" : "",
-                    color: isPending ? "red" : "white",
-                };
-            }}
-        >
-            Join As Admin
-        </NavLink></li> </>}
+        {user ? <>
+            {isAdmin ? <>
+
+                <li className="text-base  "><NavLink
+                    to="/"
+                    style={({ isActive, isPending }) => {
+                        return {
+                            fontWeight: isActive ? "bold" : "",
+                            color: isPending ? "red" : "white",
+                        };
+                    }}
+                >
+                    Asset List
+                </NavLink></li>
+                <li className="text-base  "><NavLink
+                    to="/"
+                    style={({ isActive, isPending }) => {
+                        return {
+                            fontWeight: isActive ? "bold" : "",
+                            color: isPending ? "red" : "white",
+                        };
+                    }}
+                >
+                    Add an Asset
+                </NavLink></li>
+                <li className="text-base  "><NavLink
+                    to="/"
+                    style={({ isActive, isPending }) => {
+                        return {
+                            fontWeight: isActive ? "bold" : "",
+                            color: isPending ? "red" : "white",
+                        };
+                    }}
+                >
+                    Add an Employee
+                </NavLink></li>
+
+            </> : <>
+
+                <li className="text-base  "><NavLink
+                    to="/"
+                    style={({ isActive, isPending }) => {
+                        return {
+                            fontWeight: isActive ? "bold" : "",
+                            color: isPending ? "red" : "white",
+                        };
+                    }}
+                >
+                    My Assets
+                </NavLink></li>
+                <li className="text-base  "><NavLink
+                    to="/"
+                    style={({ isActive, isPending }) => {
+                        return {
+                            fontWeight: isActive ? "bold" : "",
+                            color: isPending ? "red" : "white",
+                        };
+                    }}
+                >
+                    My Team
+                </NavLink></li>
+                <li className="text-base  "><NavLink
+                    to="/"
+                    style={({ isActive, isPending }) => {
+                        return {
+                            fontWeight: isActive ? "bold" : "",
+                            color: isPending ? "red" : "white",
+                        };
+                    }}
+                >
+                    Request Assets
+                </NavLink></li>
+                <li className="text-base  "><NavLink
+                    to="/"
+                    style={({ isActive, isPending }) => {
+                        return {
+                            fontWeight: isActive ? "bold" : "",
+                            color: isPending ? "red" : "white",
+                        };
+                    }}
+                >
+                    Custom Request
+                </NavLink></li>
+
+            </>}
+        </> :
+            <> <li className="text-base  "><NavLink
+                to="/employeeJoin"
+                style={({ isActive, isPending }) => {
+                    return {
+                        fontWeight: isActive ? "bold" : "",
+                        color: isPending ? "red" : "white",
+                    };
+                }}
+            >
+                Join As Employee
+            </NavLink></li>
+                <li className="text-base  "><NavLink
+                    to="/adminJoin"
+                    style={({ isActive, isPending }) => {
+                        return {
+                            fontWeight: isActive ? "bold" : "",
+                            color: isPending ? "red" : "white",
+                        };
+                    }}
+                >
+                    Join As Admin
+                </NavLink></li> </>}
 
         {
             user ? '' :
@@ -129,15 +176,6 @@ const Navbar = () => {
 
     </>
 
-    const [scrollValue, setScrollValue] = useState(0);
-    const scrollEvent = () => {
-        setScrollValue(window.scrollY)
-    }
-    useEffect(() => {
-        const scroll = window.addEventListener("scroll", scrollEvent);
-        return () => scroll;
-    }, [])
-
     return (
         <div>
             <div className="drawer z-40 ">
@@ -151,8 +189,6 @@ const Navbar = () => {
                             </label>
                         </div>
 
-
-                    
                         <div className="flex-1 px-2 mx-2 ">
                             <img className="w-48 md:w-60" src={logo} alt="" />
                         </div>
@@ -197,9 +233,27 @@ const Navbar = () => {
                                                     </svg>
                                                 </button>
                                             </div>
+                                            <h2 className="text-base font-medium text-black">Your Email:  <span className="text-gray-500 text-ellipsis font-thin tracking-wider">{ user?.email}</span> </h2>
                                             <h2 className="text-base font-medium text-black">Role: </h2>
                                             <p className="text-gray-700 mt-2"> Web Developer | Cat Lover | Coffee Enthusiast </p>
                                             <h2 className="text-black py-1"><span className="font-semibold ">Last SignIn Time:</span> {user?.metadata.lastSignInTime}</h2>
+
+                                            <hr className="my-4 border-t border-gray-300" />
+
+                                            {
+                                                isAdmin ?
+                                                    <>
+
+                                                        <ul className=" z-[1] menu text-gray-500">
+                                                            <li className="hover:bg-gray-100 rounded-md"><Link>All Requests</Link></li>
+                                                            <li className="hover:bg-gray-100 rounded-md"><Link>Custom Requests List</Link></li>
+                                                            <li className="hover:bg-gray-100 rounded-md"><Link>My Employee List</Link></li>
+
+                                                        </ul>
+
+                                                    </> : ''
+                                            }
+
 
                                             <hr className="my-4 border-t border-gray-300" />
                                             <div className="flex justify-between text-gray-600 mx-2">
@@ -216,9 +270,9 @@ const Navbar = () => {
 
                 </div>
 
-                <div className="drawer-side mt-16">
+                <div className="drawer-side mt-16  lg:hidden">
                     <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 min-h-full bg-base-200">
+                    <ul className="menu p-4 w-80 min-h-full bg-gray-400 ">
                         {navbar}
                     </ul>
                 </div>

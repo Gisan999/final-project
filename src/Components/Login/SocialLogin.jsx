@@ -35,6 +35,9 @@ const SocialLogin = () => {
                 // navigate(location?.state ? location.state : '/');
 
             })
+            .catch(error => {
+                console.error(' google login',error);
+            })
     }
     return (
         <div className="px-12">

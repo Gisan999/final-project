@@ -9,6 +9,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import useAuth from '../../Hooks/useAuth';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
@@ -17,6 +18,7 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 const AdminJoin = () => {
     const {registerUser, userUpdate} = useAuth();
     const axiosPublic = useAxiosPublic();
+    const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const [value, setValue] = useState(null);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -41,11 +43,12 @@ const AdminJoin = () => {
         const price = parseInt(number);
 
         const role = 'admin';
-        const name = data.name
-        const adminData = { birthDate: time, name, role, companyName: data.company, price, companyLogo: res.data.data.display_url, image: res2.data.data.display_url, package: value.value };
+        const name = data.name;
+        const email = data.email;
+        const adminData = { birthDate: time, name, email, role, companyName: data.company, price, companyLogo: res.data.data.display_url, image: res2.data.data.display_url, package: value.value };
         // console.log(data2)
 
-        const email = data.email;
+        
         const password = data.password;
         const image = res2.data.data.display_url
         registerUser(email, password)
@@ -59,15 +62,18 @@ const AdminJoin = () => {
                         axiosPublic.post('/set/users', adminData)
                             .then(res => {
                                 console.log(res.data);
+                                navigate('/payment')
 
                                 Swal.fire({
                                     position: 'top-right',
                                     title: `Welcome Mr/Mst ${name} 
-                                    Your Registration Successfully`,
+                                    Please Pay your bills
+                                    `,
                                     icon: 'success',
                                     showConfirmButton: false,
                                     timer: 2000
                                 })
+
                             })
 
 

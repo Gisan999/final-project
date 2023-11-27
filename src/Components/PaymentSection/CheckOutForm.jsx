@@ -39,6 +39,7 @@ const CheckOutForm = () => {
         else {
             console.log('payment method', paymentMethod);
             setError('');
+            navigate('/')
         }
 
         // const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
