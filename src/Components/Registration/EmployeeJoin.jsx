@@ -28,26 +28,29 @@ const EmployeeJoin = () => {
         formData.append('image', data.image[0])
         const res = await axios.post(image_hosting_api, formData)
         const role = "employee";
+        const image = res.data.data.display_url;
+
+
         const userInfo = {
             name: data.name,
             email: data.email,
+            image,
             birthDate: time,
-            image: res.data.data.display_url,
-            role
+            role,
+            team: 'no',
         }
+
         console.log(userInfo);
 
         const name = data.name;
         const email = data.email;
         const password = data.password;
-        const image = res.data.data.display_url
         registerUser(email, password)
             .then(result => {
                 console.log(result);
                 userUpdate(name, image)
                     .then(result => {
                         console.log(result);
-
 
                         axiosPublic.post('/set/users', userInfo)
                             .then(res => {

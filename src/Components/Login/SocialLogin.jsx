@@ -37,6 +37,13 @@ const SocialLogin = () => {
             })
             .catch(error => {
                 console.error(' google login',error);
+                Swal.fire({
+                    position: 'top-right',
+                    title: `google login ${error}`,
+                    icon: 'warning',
+                    showConfirmButton: false,
+                    timer: 2000
+                })
             })
     }
     return (

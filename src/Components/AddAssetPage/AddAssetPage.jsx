@@ -1,7 +1,11 @@
 import { useForm } from 'react-hook-form';
 import img from '../../assets/360_F_424657834_zM6fbarQSdFPee6C3w2WPksPCo7Rz5so-transformed.png'
+import useAuth from '../../Hooks/useAuth';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 const AddAssetPage = () => {
     const { register, handleSubmit } = useForm();
+    const axiosSecure = useAxiosSecure();
+    const {user} = useAuth();
     const currentDate = new Date();
     // const time = date?.toLocaleDateString();
     const date = currentDate.toString().split(' ').splice(0, 4).toString();
@@ -13,9 +17,15 @@ const AddAssetPage = () => {
             productName,
             productType,
             quantity,
-            date
+            date,
+            email: user?.email
         }
         console.log(assetData);
+
+        axiosSecure.post('/set/asset', assetData)
+        .then(res => {
+            console.log(res.data);
+        })
     }
     return (
         <div className='max-w-screen-lg mx-auto my-20 p-12 bg-gray-100 rounded-3xl shadow-2xl shadow-sky-300'>
@@ -43,10 +53,10 @@ const AddAssetPage = () => {
                         <div>
                             <label htmlFor="name" className="text-sm text-gray-700 block mb-1 font-medium">Product Type</label>
                             <div className="">
-                                <select   {...register("productType")} className=" w-full border rounded-lg p-3 border-b-4 border-blue-400  pe-12 text-sm shadow-sm">
-                                    <option disabled selected>Pic One</option>
-                                    <option>Returnable</option>
-                                    <option>Non-returnable</option>
+                                <select required   {...register("productType")} className=" w-full border rounded-lg p-3 border-b-4 border-blue-400  pe-12 text-sm shadow-sm">
+                                    <option value="" disabled selected>Pic One</option>
+                                    <option value="Returnable">Returnable</option>
+                                    <option value="Non-returnable">Non-returnable</option>
                                 </select>
 
                             </div>

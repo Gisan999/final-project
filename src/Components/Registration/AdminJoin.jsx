@@ -45,12 +45,12 @@ const AdminJoin = () => {
         const role = 'admin';
         const name = data.name;
         const email = data.email;
-        const adminData = { birthDate: time, name, email, role, companyName: data.company, price, companyLogo: res.data.data.display_url, image: res2.data.data.display_url, package: value.value };
+        const image = res2.data.data.display_url
+        const adminData = { birthDate: time, name,  email, role, companyName: data.company, price, companyLogo: res.data.data.display_url, image: res2.data.data.display_url, package: value.value };
         // console.log(data2)
 
         
         const password = data.password;
-        const image = res2.data.data.display_url
         registerUser(email, password)
             .then(result => {
                 console.log(result);
@@ -185,7 +185,6 @@ const AdminJoin = () => {
                             <div>
                                 <label htmlFor="job" className="text-sm text-gray-700 block mb-1 font-medium"> Select a package</label>
 
-
                                 <Select required options={options} defaultValue={value} placeholder="Select a package" onChange={setValue} isSearchable noOptionsMessage={() => "package not found..."}
 
                                     styles={{
@@ -197,10 +196,6 @@ const AdminJoin = () => {
                                         })
                                     }}
                                 ></Select>
-
-                                {/* <input required type="file" 
-                            {...register("logo")}
-                            className="bg-gray-100 border border-gray-200 rounded px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full file-input-sm file-input" /> */}
                             </div>
                             <div className=' relative'>
                                 <label htmlFor="birthday" className="text-sm text-gray-700 block mb-1 font-medium">Birth-Date</label>

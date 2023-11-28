@@ -92,7 +92,7 @@ const Login = () => {
                                     <SocialLogin/>
                                    
                                     <div>
-                                        <p className="text-center py-6">Don`t Have an account <Link to={'/registration'}><span className="font-semibold hover:underline hover:text-blue-500">Register</span></Link></p>
+                                        <p className="text-center py-6">Don`t Have an account <Link ><span className="font-semibold hover:underline hover:text-blue-500">Register</span></Link></p>
                                     </div>
                                 </div>
                             </div>

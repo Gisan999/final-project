@@ -53,7 +53,7 @@ const Navbar = () => {
             {isAdmin ? <>
 
                 <li className="text-base  "><NavLink
-                    to="/"
+                    to="/assetList"
                     style={({ isActive, isPending }) => {
                         return {
                             fontWeight: isActive ? "bold" : "",
@@ -75,7 +75,7 @@ const Navbar = () => {
                     Add an Asset
                 </NavLink></li>
                 <li className="text-base  "><NavLink
-                    to="/"
+                    to="/addEmployee"
                     style={({ isActive, isPending }) => {
                         return {
                             fontWeight: isActive ? "bold" : "",
@@ -247,7 +247,7 @@ const Navbar = () => {
                                                         <ul className=" z-[1] menu text-gray-500">
                                                             <li className="hover:bg-gray-100 rounded-md"><Link>All Requests</Link></li>
                                                             <li className="hover:bg-gray-100 rounded-md"><Link>Custom Requests List</Link></li>
-                                                            <li className="hover:bg-gray-100 rounded-md"><Link>My Employee List</Link></li>
+                                                            <li className="hover:bg-gray-100 rounded-md"><Link to={"/myEmployee"}>My Employee List</Link></li>
 
                                                         </ul>
 
