@@ -13,6 +13,9 @@ import AdminRoute from "./AdminRoute";
 import AssetList from "../Components/AssetList/AssetList";
 import AddAnEmployeePage from "../Components/AddAnEmployeePage/AddAnEmployeePage";
 import MyEmployeeList from "../Components/MyEmployeeList/MyEmployeeList";
+import MyTeamList from "../Components/MyTeamList/MyTeamList";
+import AdminHome from "../Components/AdminHome/AdminHome";
+import EmployeeHome from "../Components/EmployeeHome/EmployeeHome";
 
 const Routes = createBrowserRouter([
     {
@@ -27,10 +30,6 @@ const Routes = createBrowserRouter([
             {
                 path: "/login",
                 element: <Login />
-            },
-            {
-                path: "/registration",
-                element: <Registration />
             },
             {
                 path: "/employeeJoin",
@@ -48,7 +47,25 @@ const Routes = createBrowserRouter([
                 path: "/payment",
                 element: <PaymentSection />
             },
+
+            // Employee Routes
+            {
+                path: "/employeeHome",
+                element: <EmployeeHome />
+            },
+            {
+                path: "/myTeam",
+                element: <MyTeamList />
+            },
+            {
+                path: "/registration",
+                element: <Registration />
+            },
             // Admin routes
+            {
+                path: "/adminHome",
+                element: <AdminRoute><AdminHome /></AdminRoute>
+            },
             {
                 path: "/addAsset",
                 element: <AdminRoute><AddAssetPage /></AdminRoute>

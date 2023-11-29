@@ -3,6 +3,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
 import ShowAssets from "./ShowAssets";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 // import Select from 'react-select';
 
 const AssetList = () => {
@@ -35,6 +36,9 @@ const AssetList = () => {
     console.log(assets);
     return (
         <div className=" bg-black bg-opacity-90">
+            <Helmet>
+                <title>Blueharb | Asset page</title>
+            </Helmet>
             <div className="max-w-screen-xl mx-auto py-20">
                 <div className="p-5 rounded-md my-8 grid grid-cols-6 gap-5 bg-gray-300">
                     <div className="col-span-2">

@@ -3,15 +3,25 @@ import { Controller, useForm } from "react-hook-form";
 import { Helmet } from "react-helmet";
 import img from '../../assets/360_F_424657834_zM6fbarQSdFPee6C3w2WPksPCo7Rz5so-transformed.png'
 import axios from "axios";
+import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useUserData from "../../Hooks/useUserData";
+import Swal from "sweetalert2";
 
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
 const Registration = () => {
-    const { control, register, handleSubmit } = useForm();
+    const { control, register, handleSubmit, reset } = useForm();
     const navigate = useNavigate();
-
+    const { user } = useAuth();
+    const [userData] = useUserData();
+    const axiosSecure = useAxiosSecure();
+    const currentDate = new Date();
+    // const time = date?.toLocaleDateString();
+    const date = currentDate.toString().split(' ').splice(0, 4).toString();
+console.log(userData.adminEmail);
     const handleRequest = async data => {
         const assetName = data.assetName;
         const price = data.price;
@@ -19,11 +29,11 @@ const Registration = () => {
         const needDescription = data.needDescription;
         const information = data.information;
         // const check = event.target.terms.checked
-        
+
         const formData = new FormData();
         formData.append('image', data.assetImage[0])
         const res = await axios.post(image_hosting_api, formData)
-        
+
         const assetImage = res.data.data.display_url;
 
         const requestData = {
@@ -31,10 +41,28 @@ const Registration = () => {
             price,
             assetType,
             assetImage,
+            date,
             needDescription,
-            information
+            information,
+            userName: user?.displayName,
+            userImage: user?.photoURL,
+            adminEmail: userData?.adminEmail,
         }
         console.log(requestData);
+
+        const response = await axiosSecure.post('/set/request', requestData)
+        console.log(response);
+        if(response.statusText === "OK"){
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Your Custom Request Send",
+                showConfirmButton: false,
+                timer: 1500
+            });
+            reset()
+        }
+
     }
 
     return (
@@ -108,11 +136,11 @@ const Registration = () => {
                         <div>
                             <label htmlFor="name" className="text-sm text-gray-700 block mb-1 font-medium">Why you need this</label>
                             <div className="">
-                            <Controller
+                                <Controller
                                     name="needDescription"
-                                    
+
                                     control={control}
-                                    defaultValue=""  render={({ field }) => <textarea className="w-full border rounded-lg border-b-4 border-blue-400 p-3 pe-12 text-sm shadow-sm" {...field} placeholder="Why you need this" rows={3} />}
+                                    defaultValue="" render={({ field }) => <textarea className="w-full border rounded-lg border-b-4 border-blue-400 p-3 pe-12 text-sm shadow-sm" {...field} placeholder="Why you need this" rows={3} />}
                                 />
 
 
@@ -126,9 +154,9 @@ const Registration = () => {
 
                                 <Controller
                                     name="information"
-                                    
+
                                     control={control}
-                                    defaultValue=""  render={({ field }) => <textarea className="w-full border rounded-lg border-b-4 border-blue-400 p-3 pe-12 text-sm shadow-sm" {...field} placeholder="Additional information" rows={3} />}
+                                    defaultValue="" render={({ field }) => <textarea className="w-full border rounded-lg border-b-4 border-blue-400 p-3 pe-12 text-sm shadow-sm" {...field} placeholder="Additional information" rows={3} />}
                                 />
 
 

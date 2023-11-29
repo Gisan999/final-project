@@ -2,10 +2,14 @@ import { useForm } from 'react-hook-form';
 import img from '../../assets/360_F_424657834_zM6fbarQSdFPee6C3w2WPksPCo7Rz5so-transformed.png'
 import useAuth from '../../Hooks/useAuth';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import { Helmet } from 'react-helmet';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 const AddAssetPage = () => {
     const { register, handleSubmit } = useForm();
     const axiosSecure = useAxiosSecure();
     const {user} = useAuth();
+    const navigate = useNavigate();
     const currentDate = new Date();
     // const time = date?.toLocaleDateString();
     const date = currentDate.toString().split(' ').splice(0, 4).toString();
@@ -24,11 +28,23 @@ const AddAssetPage = () => {
 
         axiosSecure.post('/set/asset', assetData)
         .then(res => {
-            console.log(res.data);
+            if (res.data.insertedId) {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Added Your Asset Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate('/');
+            }
         })
     }
     return (
         <div className='max-w-screen-lg mx-auto my-20 p-12 bg-gray-100 rounded-3xl shadow-2xl shadow-sky-300'>
+              <Helmet>
+                <title>Blueharb | Ad Asset </title>
+            </Helmet>
             <section className="relative mt-10 lg:mt-0">
                 <div className="w-full px-4 py-12 ">
                     <div className="mx-auto max-w-lg text-center">

@@ -4,6 +4,7 @@ import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import logo from '../../assets/download.png'
 import useAdmin from "../../Hooks/useAdmin";
+import useUserData from "../../Hooks/useUserData";
 
 const Navbar = () => {
     const [scrollValue, setScrollValue] = useState(0);
@@ -17,8 +18,10 @@ const Navbar = () => {
 
     const { user, logOut } = useAuth();
     const [isAdmin] = useAdmin();
+    const [userData] = useUserData();
     const navigate = useNavigate();
-
+    // console.log(userData);
+    // console.log(isAdmin);
     const handleLogOut = () => {
         logOut()
             .then(res => {
@@ -36,21 +39,23 @@ const Navbar = () => {
     }
 
     const navbar = <>
-        <li className="text-base  "><NavLink
-            to="/"
-            style={({ isActive, isPending }) => {
-                return {
-                    fontWeight: isActive ? "bold" : "",
-                    color: isPending ? "red" : "white",
-                };
-            }}
-        >
-            Home
-        </NavLink></li>
+       
 
 
         {user ? <>
             {isAdmin ? <>
+                <li className="text-base  "><NavLink
+                    to="/adminHome"
+                    style={({ isActive, isPending }) => {
+                        return {
+                            fontWeight: isActive ? "bold" : "",
+                            color: isPending ? "red" : "white",
+                        };
+                    }}
+                >
+                    Home
+                </NavLink></li>
+
 
                 <li className="text-base  "><NavLink
                     to="/assetList"
@@ -89,6 +94,17 @@ const Navbar = () => {
             </> : <>
 
                 <li className="text-base  "><NavLink
+                    to="/employeeHome"
+                    style={({ isActive, isPending }) => {
+                        return {
+                            fontWeight: isActive ? "bold" : "",
+                            color: isPending ? "red" : "white",
+                        };
+                    }}
+                >
+                    Home
+                </NavLink></li>
+                <li className="text-base  "><NavLink
                     to="/"
                     style={({ isActive, isPending }) => {
                         return {
@@ -100,7 +116,7 @@ const Navbar = () => {
                     My Assets
                 </NavLink></li>
                 <li className="text-base  "><NavLink
-                    to="/"
+                    to="/myTeam"
                     style={({ isActive, isPending }) => {
                         return {
                             fontWeight: isActive ? "bold" : "",
@@ -135,7 +151,20 @@ const Navbar = () => {
 
             </>}
         </> :
-            <> <li className="text-base  "><NavLink
+            <> 
+            
+            <li className="text-base  "><NavLink
+            to="/"
+            style={({ isActive, isPending }) => {
+                return {
+                    fontWeight: isActive ? "bold" : "",
+                    color: isPending ? "red" : "white",
+                };
+            }}
+        >
+            Home
+        </NavLink></li>
+            <li className="text-base  "><NavLink
                 to="/employeeJoin"
                 style={({ isActive, isPending }) => {
                     return {
@@ -233,8 +262,8 @@ const Navbar = () => {
                                                     </svg>
                                                 </button>
                                             </div>
-                                            <h2 className="text-base font-medium text-black">Your Email:  <span className="text-gray-500 text-ellipsis font-thin tracking-wider">{ user?.email}</span> </h2>
-                                            <h2 className="text-base font-medium text-black">Role: </h2>
+                                            <h2 className="text-base font-medium text-black">Your Email:  <span className="text-gray-500 text-ellipsis font-thin tracking-wider">{user?.email}</span> </h2>
+                                            <h2 className="text-base font-medium text-black">Role: {userData?.role} </h2>
                                             <p className="text-gray-700 mt-2"> Web Developer | Cat Lover | Coffee Enthusiast </p>
                                             <h2 className="text-black py-1"><span className="font-semibold ">Last SignIn Time:</span> {user?.metadata.lastSignInTime}</h2>
 
