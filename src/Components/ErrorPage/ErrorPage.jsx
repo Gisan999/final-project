@@ -8,7 +8,6 @@ const ErrorPage = () => {
 		<div className="flex h-screen">
 			<div className="m-auto text-center">
 				<div>
-                    {/*  width="631" height="300" */}
 					<svg className="w-96 md:h-[449px] md:w-[750px]" viewBox="0 0 631 379" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<g clipPath="url(#clip0)">
 							<path

@@ -8,23 +8,13 @@ const MyTeamList = () => {
     const [usersList] = useUser();
     const [userData] = useUserData();
     const [team, setTeam] = useState([]);
-    // console.log(usersList);
-    // console.log(userData);
-
-    // useEffect(function () {
-    //     async function myTeam() {
-    //         const remaining = await usersList?.filter(data => data.adminEmail === userData?.adminEmail);
-    //         setTeam(remaining);
-    //     }
-    //     myTeam();
-    // }, [userData?.adminEmail, usersList])
+  
 
     useEffect(() => {
         const remaining = usersList?.filter(data => data.adminEmail === userData?.adminEmail);
         setTeam(remaining);
     }, [userData?.adminEmail, usersList])
 
-    // console.log(team);
     return (
         <div className="my-28">
             <Helmet>

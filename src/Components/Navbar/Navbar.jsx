@@ -20,8 +20,6 @@ const Navbar = () => {
     const [isAdmin] = useAdmin();
     const [userData] = useUserData();
     const navigate = useNavigate();
-    // console.log(userData);
-    // console.log(isAdmin);
     const handleLogOut = () => {
         logOut()
             .then(res => {

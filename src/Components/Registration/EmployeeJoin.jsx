@@ -18,7 +18,7 @@ const EmployeeJoin = () => {
     const axiosPublic = useAxiosPublic();
     const { registerUser, userUpdate } = useAuth();
     const [showPassword, setShowPassword] = useState(false);
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { register, handleSubmit,  formState: { errors } } = useForm();
     const [date, setDate] = useState(new Date());
     const time = date.toLocaleDateString();
     const navigate = useNavigate();
