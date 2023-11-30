@@ -1,36 +1,37 @@
-import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
 import ShowAssets from "./ShowAssets";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-// import Select from 'react-select';
+import useAssetsList from "../../Hooks/useAssetsList";
 
 const AssetList = () => {
-    const axiosSecure = useAxiosSecure();
     const [search, setSearch] = useState('');
+    const [assets] = useAssetsList();
     const { user } = useAuth();
-    const { data: assets = [] } = useQuery({
-        queryKey: ['assets', user?.email],
-        queryFn: async () => {
-            const res = await axiosSecure.get(`/get/asset?email=${user?.email}`)
-            return res.data
-        }
-    })
-    const [filterData, setFilterData] = useState(assets);
+    const [assetsList, setAssetsList] = useState([]);
+
+    
+
+
+    useEffect(() => {
+        const remaining = assets?.filter(data => data?.email === user?.email)
+        setAssetsList(remaining);
+    }, [assets, user?.email])
+
+    const [filterData, setFilterData] = useState(assetsList);
 
     const btnClick = text => {
-        const remaining = assets.filter(data => data.productType === text)
+        const remaining = assetsList.filter(data => data.productType === text)
         setFilterData(remaining);
 
     }
 
     useEffect(() => {
         setTimeout(() => {
-            setFilterData(assets)
+            setFilterData(assetsList)
 
         }, 1 * 500);
-    }, [assets])
+    }, [assetsList])
 
 
     console.log(assets);

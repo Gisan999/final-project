@@ -1,8 +1,13 @@
+import Empty from "./Empty";
+import MyCustomRequestSection from "./MyCustomRequestSection";
 
 const EmployeeHome = () => {
     return (
         <div>
-            <h2>Employee Home</h2>
+            <div>
+                <MyCustomRequestSection></MyCustomRequestSection>
+                <Empty></Empty>
+            </div>
         </div>
     );
 };

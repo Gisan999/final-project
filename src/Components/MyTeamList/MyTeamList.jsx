@@ -30,7 +30,7 @@ const MyTeamList = () => {
             <Helmet>
                 <title>Blueharb | My Team</title>
             </Helmet>
-            <h2 className="text-5xl text-center pt-12 pb-6">OUT TEAM MEMBER</h2>
+            <h2 className="text-5xl text-center pt-12 pb-6">OUR TEAM MEMBER</h2>
             {
                 userData?.adminEmail ? <>
                     <div className="max-w-screen-lg mx-auto border border-sky-300 shadow-inner shadow-sky-400 mt-10 p-3">

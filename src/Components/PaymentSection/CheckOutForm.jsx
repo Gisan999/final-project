@@ -2,15 +2,11 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import useAuth from "../../Hooks/useAuth";
 
 const CheckOutForm = () => {
     const [error, setError] = useState('');
-    const [clientSecret, setClientSecret] = useState('');
-    const [transactionId, setTransactionId] = useState('');
     const stripe = useStripe();
     const elements = useElements();
-    const {user} = useAuth();
     const navigate = useNavigate();
   
 
@@ -40,39 +36,16 @@ const CheckOutForm = () => {
             console.log('payment method', paymentMethod);
             setError('');
             navigate('/')
+            Swal.fire({
+                position: 'center',
+                title:'Your Payment successfully',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 2000
+            })
         }
 
-        // const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
-        //     payment_method:{
-        //         card: card,
-        //         billing_details:{
-        //             email: user?.email || 'anonymous',
-        //             name: user?.displayName || 'anonymous'
-        //         }
-        //     }
-        // })
-
-        // if(confirmError){
-        //     console.log('confirm error');
-        // }else{
-        //     console.log('payment intent', paymentIntent);
-        //     if(paymentIntent.status === 'succeeded'){
-        //         console.log('transaction id', paymentIntent.id);
-        //         setTransactionId(paymentIntent.id);
-
-        //       if(res.data?.paymentResult?.insertedId){
-        //         Swal.fire({
-        //             position: "center",
-        //             icon: "success",
-        //             title: "Thank You For The Payment",
-        //             showConfirmButton: false,
-        //             timer: 1500
-        //           });
-        //           navigate('/dashboard/paymentHistory')
-        //       }
-             
-        //     }
-        // }
+      
     }
 
 
@@ -96,8 +69,7 @@ const CheckOutForm = () => {
                 }}>
             </CardElement>
             <button className="btn btn-sm btn-outline btn-secondary px-7 mt-14 w-full rounded-md my-4" type="submit" disabled={!stripe}>pay</button>
-            <p className="text-red-500">{error}</p>
-            {transactionId && <p className="text-green-500">Your transaction Id: {transactionId}</p>}
+           
 
         </form>
      </div>

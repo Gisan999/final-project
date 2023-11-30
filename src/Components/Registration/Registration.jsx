@@ -21,7 +21,7 @@ const Registration = () => {
     const currentDate = new Date();
     // const time = date?.toLocaleDateString();
     const date = currentDate.toString().split(' ').splice(0, 4).toString();
-console.log(userData.adminEmail);
+    console.log(userData.adminEmail);
     const handleRequest = async data => {
         const assetName = data.assetName;
         const price = data.price;
@@ -52,7 +52,7 @@ console.log(userData.adminEmail);
 
         const response = await axiosSecure.post('/set/request', requestData)
         console.log(response);
-        if(response.statusText === "OK"){
+        if (response.statusText === "OK") {
             Swal.fire({
                 position: "top-end",
                 icon: "success",
@@ -70,7 +70,7 @@ console.log(userData.adminEmail);
             <Helmet>
                 <title>Blueharb | Custom Request</title>
             </Helmet>
-            <section className="relative mt-10 lg:mt-0">
+            {userData?.adminEmail ? <section className="relative mt-10 lg:mt-0">
                 <div className="w-full px-4 py-12 ">
                     <div className="mx-auto max-w-lg text-center">
                         <h1 className="text-2xl font-bold sm:text-3xl">Create Your Custom Request Here</h1>
@@ -87,9 +87,7 @@ console.log(userData.adminEmail);
                                     className="w-full border rounded-lg border-b-4 border-blue-400 p-3 pe-12 text-sm shadow-sm"
                                     placeholder="Asset Name"
                                 />
-
                             </div>
-
                         </div>
                         <div>
                             <label htmlFor="name" className="text-sm text-gray-700 block mb-1 font-medium">Price</label>
@@ -113,8 +111,6 @@ console.log(userData.adminEmail);
                                     <option>Returnable</option>
                                     <option>Non-returnable</option>
                                 </select>
-
-
                             </div>
 
                         </div>
@@ -128,7 +124,6 @@ console.log(userData.adminEmail);
                                     {...register("assetImage")}
                                     className="w-full border rounded-lg border-b-4  border-blue-400 file-input-md file-input pe-12 text-sm shadow-sm"
                                 />
-
                             </div>
 
                         </div>
@@ -142,8 +137,6 @@ console.log(userData.adminEmail);
                                     control={control}
                                     defaultValue="" render={({ field }) => <textarea className="w-full border rounded-lg border-b-4 border-blue-400 p-3 pe-12 text-sm shadow-sm" {...field} placeholder="Why you need this" rows={3} />}
                                 />
-
-
 
                             </div>
                         </div>
@@ -159,10 +152,6 @@ console.log(userData.adminEmail);
                                     defaultValue="" render={({ field }) => <textarea className="w-full border rounded-lg border-b-4 border-blue-400 p-3 pe-12 text-sm shadow-sm" {...field} placeholder="Additional information" rows={3} />}
                                 />
 
-
-
-                                {/* <textarea  placeholder="Additional information"  {...register("information")} name="" id="" cols="30" rows="3" className="w-full border rounded-lg border-b-4 border-blue-400 p-3 pe-12 text-sm shadow-sm"></textarea> */}
-
                             </div>
                         </div>
 
@@ -172,7 +161,7 @@ console.log(userData.adminEmail);
                                 type="submit"
                                 className="inline-block rounded-lg btn bg-blue-500 px-8  text-sm font-medium text-white"
                             >
-                                Sign in
+                                Submit Request
                             </button>
                         </div>
                     </form>
@@ -182,14 +171,14 @@ console.log(userData.adminEmail);
                     </div>
                 </div>
 
-                {/* <div className="relative h-64 w-full sm:h-96 lg:h-full lg:w-1/2">
-                    <img
-                        alt="Welcome"
-                        src="https://images.pexels.com/photos/8297226/pexels-photo-8297226.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                        className="absolute inset-0 h-full w-full object-cover"
-                    />
-                </div> */}
-            </section>
+            </section> : <>
+                <div className="max-w-screen-md mx-auto ">
+                    <div className="h-[70vh] flex items-center justify-center">
+                        <h2 className="text-center text-2xl md:text-4xl lg:text-5xl px-8 lg:px-0 font-bold"> You are not affiliated with a team, <br /> <br /> Please contact your Admin</h2>
+                    </div>
+
+                </div>
+            </>}
         </div>
     );
 };

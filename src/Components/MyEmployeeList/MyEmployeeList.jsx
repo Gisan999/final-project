@@ -54,10 +54,11 @@ const MyEmployeeList = () => {
     }
     console.log(isAdmin);
     return (
-        <div>
+        <div className="mt-20 mb-12">
               <Helmet>
                 <title>Blueharb | My employee</title>
             </Helmet>
+            <h2 className="text-2xl text-center py-9 font-bold italic md:text-5xl ">My Team Member List</h2>
             <div className="max-w-screen-lg mx-auto border border-sky-300 shadow-inner shadow-sky-400 mt-10 p-3">
 
                 <div className="overflow-x-auto">

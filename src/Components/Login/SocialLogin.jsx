@@ -21,9 +21,8 @@ const SocialLogin = () => {
                 }
                 axiosPublic.post('/set/users', userInfo)
                     .then(res => {
+                        navigate('/about')
                         console.log(res.data);
-                        navigate('/')
-
                         Swal.fire({
                             position: 'top-right',
                             title: `success`,
@@ -31,12 +30,13 @@ const SocialLogin = () => {
                             showConfirmButton: false,
                             timer: 2000
                         })
+                      
                     })
                 // navigate(location?.state ? location.state : '/');
 
             })
             .catch(error => {
-                console.error(' google login',error);
+                console.error(' google login', error);
                 Swal.fire({
                     position: 'top-right',
                     title: `google login ${error}`,

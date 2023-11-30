@@ -16,6 +16,9 @@ import MyEmployeeList from "../Components/MyEmployeeList/MyEmployeeList";
 import MyTeamList from "../Components/MyTeamList/MyTeamList";
 import AdminHome from "../Components/AdminHome/AdminHome";
 import EmployeeHome from "../Components/EmployeeHome/EmployeeHome";
+import MyAsset from "../Components/MyAsset/MyAsset";
+import MyRequestAssetList from "../Components/MyRequestAssetList/MyRequestAssetList";
+import CustomRequestList from "../Components/CustomRequestList/CustomRequestList";
 
 const Routes = createBrowserRouter([
     {
@@ -38,6 +41,14 @@ const Routes = createBrowserRouter([
             {
                 path: "/adminJoin",
                 element: <AdminJoin />
+            },
+            {
+                path: "/myAsset",
+                element: <MyAsset />
+            },
+            {
+                path: "/myRequestAsset",
+                element: <MyRequestAssetList />
             },
             {
                 path: "/about",
@@ -81,6 +92,10 @@ const Routes = createBrowserRouter([
             {
                 path: "/myEmployee",
                 element: <AdminRoute><MyEmployeeList /></AdminRoute>
+            },
+            {
+                path: "/customRequestList",
+                element: <AdminRoute><CustomRequestList /></AdminRoute>
             }
 
         ]

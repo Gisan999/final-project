@@ -39,7 +39,7 @@ const Navbar = () => {
     }
 
     const navbar = <>
-       
+
 
 
         {user ? <>
@@ -105,7 +105,7 @@ const Navbar = () => {
                     Home
                 </NavLink></li>
                 <li className="text-base  "><NavLink
-                    to="/"
+                    to="/myAsset"
                     style={({ isActive, isPending }) => {
                         return {
                             fontWeight: isActive ? "bold" : "",
@@ -127,7 +127,7 @@ const Navbar = () => {
                     My Team
                 </NavLink></li>
                 <li className="text-base  "><NavLink
-                    to="/"
+                    to="/myRequestAsset"
                     style={({ isActive, isPending }) => {
                         return {
                             fontWeight: isActive ? "bold" : "",
@@ -135,7 +135,7 @@ const Navbar = () => {
                         };
                     }}
                 >
-                    Request Assets
+                    Request for an Asset
                 </NavLink></li>
                 <li className="text-base  "><NavLink
                     to="/registration"
@@ -151,30 +151,30 @@ const Navbar = () => {
 
             </>}
         </> :
-            <> 
-            
-            <li className="text-base  "><NavLink
-            to="/"
-            style={({ isActive, isPending }) => {
-                return {
-                    fontWeight: isActive ? "bold" : "",
-                    color: isPending ? "red" : "white",
-                };
-            }}
-        >
-            Home
-        </NavLink></li>
-            <li className="text-base  "><NavLink
-                to="/employeeJoin"
-                style={({ isActive, isPending }) => {
-                    return {
-                        fontWeight: isActive ? "bold" : "",
-                        color: isPending ? "red" : "white",
-                    };
-                }}
-            >
-                Join As Employee
-            </NavLink></li>
+            <>
+
+                <li className="text-base  "><NavLink
+                    to="/"
+                    style={({ isActive, isPending }) => {
+                        return {
+                            fontWeight: isActive ? "bold" : "",
+                            color: isPending ? "red" : "white",
+                        };
+                    }}
+                >
+                    Home
+                </NavLink></li>
+                <li className="text-base  "><NavLink
+                    to="/employeeJoin"
+                    style={({ isActive, isPending }) => {
+                        return {
+                            fontWeight: isActive ? "bold" : "",
+                            color: isPending ? "red" : "white",
+                        };
+                    }}
+                >
+                    Join As Employee
+                </NavLink></li>
                 <li className="text-base  "><NavLink
                     to="/adminJoin"
                     style={({ isActive, isPending }) => {
@@ -275,7 +275,7 @@ const Navbar = () => {
 
                                                         <ul className=" z-[1] menu text-gray-500">
                                                             <li className="hover:bg-gray-100 rounded-md"><Link>All Requests</Link></li>
-                                                            <li className="hover:bg-gray-100 rounded-md"><Link>Custom Requests List</Link></li>
+                                                            <li className="hover:bg-gray-100 rounded-md"><Link to={"/customRequestList"}>Custom Requests List</Link></li>
                                                             <li className="hover:bg-gray-100 rounded-md"><Link to={"/myEmployee"}>My Employee List</Link></li>
 
                                                         </ul>
