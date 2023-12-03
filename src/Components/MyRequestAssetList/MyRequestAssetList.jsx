@@ -112,7 +112,6 @@ const MyRequestAssetList = () => {
                                 <div className="col-span-4">
                                     <form onChange={(e) => setSearch(e.target.value)}>
                                         <input type="text" placeholder="Search Product" className="py-2.5 pl-3 w-full p-2 rounded-md text-lg" />
-
                                     </form>
                                 </div>
                             </div>
@@ -133,7 +132,7 @@ const MyRequestAssetList = () => {
                                                         <h2> <span className="text-lg font-medium text-gray-300">Availability:  </span> <span className="text-gray-400">{asset.quantity}</span></h2>
                                                         <div className="flex justify-center mt-8">
                                                             <button onClick={() => handleOpen(asset)} className="button99">
-                                                                Button
+                                                            Request
                                                             </button>
                                                         </div>
                                                     </div>
@@ -176,7 +175,7 @@ const MyRequestAssetList = () => {
                                     </div>
                                 </div>
                             </div>
-                            <button className="submit-button12">Log in</button>
+                            <button className="submit-button12">Apply</button>
                         </form>
 
                     </Box>
