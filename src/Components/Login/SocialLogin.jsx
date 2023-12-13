@@ -8,7 +8,6 @@ const SocialLogin = () => {
     const axiosPublic = useAxiosPublic();
     const { googleLogin } = useAuth();
     const navigate = useNavigate();
-
     const googleSignIn = () => {
         googleLogin()
             .then(result => {
@@ -32,8 +31,6 @@ const SocialLogin = () => {
                         })
                       
                     })
-                // navigate(location?.state ? location.state : '/');
-
             })
             .catch(error => {
                 console.error(' google login', error);

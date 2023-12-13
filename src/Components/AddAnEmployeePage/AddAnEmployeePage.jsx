@@ -11,22 +11,16 @@ const AddAnEmployeePage = () => {
     const { user } = useAuth();
     const [usersList, refetch] = useUser();
     const [employee, setEmployee] = useState([]);
-    console.log(usersList);
-
     useEffect(() => {
         const remaining = usersList.filter(user => user.team === "no")
         setEmployee(remaining);
-
     }, [usersList])
-
     const handleAddTeam = userData => {
-        console.log(userData);
         axiosSecure.patch(`/update/users/${userData._id}`, { adminEmail: user?.email })
             .then(res => {
                 console.log(res.data);
                 refetch();
             })
-
         const myEmploy = {
             name: userData.name,
             image: userData.image,
@@ -52,10 +46,8 @@ const AddAnEmployeePage = () => {
             </Helmet>
             <h2 className="text-center text-3xl md:text-5xl font-bold py-9">Added A New Employee</h2>
             <div className="max-w-screen-lg mx-auto border border-sky-300 shadow-inner shadow-sky-400 mt-10 mb-20 p-3">
-
                 <div className="overflow-x-auto">
                     <table className="table mt-5">
-                        {/* head */}
                         <thead>
                             <tr className="bg-gray-400 text-white text-base">
                                 <th>
@@ -70,7 +62,6 @@ const AddAnEmployeePage = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {/* row 1 */}
                             {
                                 employee?.map((data, idx) => <tr key={data._id}>
                                     <th>
@@ -95,7 +86,6 @@ const AddAnEmployeePage = () => {
                                     </th>
                                 </tr>)
                             }
-
                         </tbody>
                     </table>
                 </div>

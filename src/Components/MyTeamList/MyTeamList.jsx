@@ -8,8 +8,6 @@ const MyTeamList = () => {
     const [usersList] = useUser();
     const [userData] = useUserData();
     const [team, setTeam] = useState([]);
-  
-
     useEffect(() => {
         const remaining = usersList?.filter(data => data.adminEmail === userData?.adminEmail);
         setTeam(remaining);
@@ -24,15 +22,12 @@ const MyTeamList = () => {
             {
                 userData?.adminEmail ? <>
                     <div className="max-w-screen-lg mx-auto border border-sky-300 shadow-inner shadow-sky-400 mt-10 p-3">
-
                         <div className="overflow-x-auto">
                             <table className="table mt-5">
-
                                 <thead>
                                     <tr className="bg-gray-400 text-white text-base">
                                         <th>
                                             <label>
-
                                             </label>
                                         </th>
                                         <th>USER IMAGE</th>
@@ -41,7 +36,6 @@ const MyTeamList = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                     {
                                         team?.map((data, idx) => <tr key={data._id}>
                                             <th>
@@ -65,18 +59,15 @@ const MyTeamList = () => {
                                             
                                         </tr>)
                                     }
-
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
                 </> : <>
                     <div className="max-w-screen-md mx-auto ">
                         <div className="h-[70vh] flex items-center justify-center">
                             <h2 className="text-center text-2xl md:text-4xl lg:text-5xl px-8 lg:px-0 font-bold"> You are not affiliated with a team, <br /> <br /> Please contact your Admin</h2>
                         </div>
-
                     </div>
                 </>
             }

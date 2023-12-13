@@ -24,8 +24,6 @@ const ShowAssets = ({asset}) => {
                                     <Link><button className="btn btn-outline btn-error btn-sm px-7 "><MdDelete/> Delete</button></Link>
                                 </div>
                             </div>
-
-
                         </div>
         </div>
     );

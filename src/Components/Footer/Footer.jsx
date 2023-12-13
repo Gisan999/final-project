@@ -6,15 +6,12 @@ const Footer = () => {
               <div className="divider divider-accent divider-start">     </div>
               <div className="divider divider-info">     </div>
               <div className="divider divider-accent divider-end">     </div>
-
-
             <footer className="bg-white dark:bg-gray-900 py-12">
                 <div className="mx-auto w-full container p-4 py-6 lg:py-8">
                     <div className="md:flex md:justify-between">
                         <div className="mb-6 md:mb-0">
                             <div  className="flex items-center">
                                 <img src={logo} className="w-60 me-3" alt="FlowBite Logo" />
-                                
                             </div>
                         </div>
                         <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
@@ -92,7 +89,6 @@ const Footer = () => {
                     </div>
                 </div>
             </footer>
-
         </div>
     );
 };

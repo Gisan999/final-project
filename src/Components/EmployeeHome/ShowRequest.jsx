@@ -17,9 +17,7 @@ const style = {
     p: 4,
 };
 
-
 const ShowRequest = ({ item }) => {
-    
     const [open, setOpen] = React.useState(false);
     const handleOpen = (item) => {
         console.log(item);
@@ -27,16 +25,13 @@ const ShowRequest = ({ item }) => {
         setOpen(true);
     }
     const handleClose = () => setOpen(false);
-
     return (
         <div className='bg-black bg-transparent'>
-
             <div className="card2">
                 <div className="content">
                     <p className="heading">{item.assetName}
                     </p>
                     <h2> <span className='font-bold'>Asset Type:</span> {item.assetType}</h2>
-
                     <p className="flex items-center gap-2 ">
                         <span className='font-bold'>Asset Price:</span> <GiMoneyStack /> {item.price}
                     </p>
@@ -82,7 +77,6 @@ const ShowRequest = ({ item }) => {
                     </Box>
                 </Modal>
             </div>
-
         </div>
     );
 };

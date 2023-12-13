@@ -15,7 +15,6 @@ const Navbar = () => {
         const scroll = window.addEventListener("scroll", scrollEvent);
         return () => scroll;
     }, [])
-
     const { user, logOut } = useAuth();
     const [isAdmin] = useAdmin();
     const [userData] = useUserData();
@@ -38,8 +37,6 @@ const Navbar = () => {
 
     const navbar = <>
 
-
-
         {user ? <>
             {isAdmin ? <>
                 <li className="text-base  "><NavLink
@@ -53,8 +50,6 @@ const Navbar = () => {
                 >
                     Home
                 </NavLink></li>
-
-
                 <li className="text-base  "><NavLink
                     to="/assetList"
                     style={({ isActive, isPending }) => {
@@ -88,7 +83,6 @@ const Navbar = () => {
                 >
                     Add an Employee
                 </NavLink></li>
-
             </> : <>
 
                 <li className="text-base  "><NavLink
@@ -146,11 +140,9 @@ const Navbar = () => {
                 >
                     Custom Request
                 </NavLink></li>
-
             </>}
         </> :
             <>
-
                 <li className="text-base  "><NavLink
                     to="/"
                     style={({ isActive, isPending }) => {
@@ -184,10 +176,8 @@ const Navbar = () => {
                 >
                     Join As Admin
                 </NavLink></li> </>}
-
         {
             user ? '' :
-
                 <li className="text-base  "><NavLink
                     to="/login"
                     style={({ isActive, isPending }) => {
@@ -200,7 +190,6 @@ const Navbar = () => {
                     Login
                 </NavLink></li>
         }
-
     </>
 
     return (
@@ -215,31 +204,25 @@ const Navbar = () => {
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-6 h-6 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                             </label>
                         </div>
-
                         <div className="flex-1 px-2 mx-2 ">
                             <img className="w-48 md:w-60" src={logo} alt="" />
                         </div>
-
-
                         <div className="flex-none hidden lg:block">
                             <ul className="menu menu-horizontal">
                                 {navbar}
                             </ul>
                         </div>
-
                         {user ? <div className="dropdown dropdown-bottom dropdown-end dropdown-hover">
                             <div tabIndex={0} className="btn btn-lg rounded-full bg-teal-500 bg-opacity-50 hover:bg-blue-700 text-white pl-5 gap-5 ">
                                 <p className="text-sm hidden md:block">{user?.displayName}</p>
                                 <img className="h-12 w-12 rounded-full" src={user?.photoURL} alt="" />
                             </div>
-
                             <div tabIndex={0} className="dropdown-content z-[1] card card-compact w-96  shadow  text-primary-content">
                                 <div className="card-body">
                                     <div className="bg-gray-100  flex items-center justify-center p-2">
                                         <div className="bg-white p-3 rounded-lg shadow-md max-w-lg w-full">
                                             <div className="relative">
                                                 <div>
-
                                                     <img src={user?.photoURL} alt="Banner Profile" className="w-full rounded-t-lg h-36 " />
                                                 </div>
                                                 <img src={user?.photoURL} alt="Profile Picture" className="absolute bottom-0 left-2/4 transform -translate-x-1/2 translate-y-1/2 w-24 h-24 rounded-full border-4 border-white" />
@@ -264,24 +247,17 @@ const Navbar = () => {
                                             <h2 className="text-base font-medium text-black">Role: {userData?.role} </h2>
                                             <p className="text-gray-700 mt-2"> Web Developer | Cat Lover | Coffee Enthusiast </p>
                                             <h2 className="text-black py-1"><span className="font-semibold ">Last SignIn Time:</span> {user?.metadata.lastSignInTime}</h2>
-
                                             <hr className="my-4 border-t border-gray-300" />
-
                                             {
                                                 isAdmin ?
                                                     <>
-
                                                         <ul className=" z-[1] menu text-gray-500">
                                                             <li className="hover:bg-gray-100 rounded-md"><Link>All Requests</Link></li>
                                                             <li className="hover:bg-gray-100 rounded-md"><Link to={"/customRequestList"}>Custom Requests List</Link></li>
                                                             <li className="hover:bg-gray-100 rounded-md"><Link to={"/myEmployee"}>My Employee List</Link></li>
-
                                                         </ul>
-
                                                     </> : ''
                                             }
-
-
                                             <hr className="my-4 border-t border-gray-300" />
                                             <div className="flex justify-between text-gray-600 mx-2">
                                                 <button onClick={handleLogOut} className="btn btn-sm px-6 btn-outline btn-info">Logout</button>
@@ -291,12 +267,8 @@ const Navbar = () => {
                                 </div>
                             </div>
                         </div> : ''}
-
                     </div>
-
-
                 </div>
-
                 <div className="drawer-side mt-16  lg:hidden">
                     <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 min-h-full bg-gray-400 ">

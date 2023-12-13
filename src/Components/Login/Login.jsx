@@ -13,7 +13,6 @@ const Login = () => {
     const { register, handleSubmit } = useForm();
     const { logIn, setLoading } = useAuth();
     const navigate = useNavigate();
-
     const onSubmit = data => {
         const email = data.email;
         const password = data.password;
@@ -41,7 +40,6 @@ const Login = () => {
                     timer: 2000
                 })
             });
-
     }
 
     return (
@@ -62,7 +60,6 @@ const Login = () => {
                                                 {...register("email", { required: true })}
                                                 className="flex-grow h-8 px-2 border rounded border-b-2  border-blue-400" name="email" placeholder="Email" />
                                             <span className="absolute inset-y-0 end-0 grid text-gray-400 place-content-center px-4">
-
                                                 <MdAlternateEmail></MdAlternateEmail>
                                             </span>
                                         </div>
@@ -71,7 +68,6 @@ const Login = () => {
                                                 {...register("password", { required: true })}
                                                 className="flex-grow h-8 px-2 rounded border border-b-2  border-blue-400 " name="password" required placeholder="Password" />
                                             <span onClick={() => setShowPassword(!showPassword)} className="absolute inset-y-0 end-0 grid text-gray-400 place-content-center px-4">
-
                                                 {
                                                     showPassword ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>
                                                 }
@@ -87,9 +83,7 @@ const Login = () => {
                                         </div>
                                     </form>
                                     <div className="divider divider-info my-5 lg:my-12">Or</div>
-
                                     <SocialLogin />
-
                                     <div>
                                         <p className="text-center py-6">Don`t Have an account <Link ><span className="font-semibold hover:underline hover:text-blue-500">Register</span></Link></p>
                                     </div>
@@ -97,11 +91,8 @@ const Login = () => {
                             </div>
                         </div>
                         <div className="hidden md:block md:w-1/2 rounded-r-lg "
-                        //  style={{background: `url('https://images.unsplash.com/photo-1515965885361-f1e0095517ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3300&q=80')`}}
                         >
                             <img className="w-full h-[550px] lg:h-[700px] " src="https://images.pexels.com/photos/4491469/pexels-photo-4491469.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="" />
-
-
                         </div>
                     </div>
                 </div>

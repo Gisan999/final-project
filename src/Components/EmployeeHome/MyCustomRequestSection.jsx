@@ -12,8 +12,6 @@ const MyCustomRequestSection = () => {
         const remaining = requestList.filter(data => data?.userName === user?.displayName)
         setRequest(remaining);
     },[requestList, user?.displayName])
-    console.log(requestList);
-    console.log(request);
     return (
       <div className="bg-black bg-opacity-90">
           <div className="max-w-screen-2xl mx-auto pt-40 py-32">

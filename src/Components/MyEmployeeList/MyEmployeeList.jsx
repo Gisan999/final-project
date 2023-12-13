@@ -2,16 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { FaUser } from "react-icons/fa";
-import useAdmin from "../../Hooks/useAdmin";
+// import useAdmin from "../../Hooks/useAdmin";
 import { MdDelete } from "react-icons/md";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet";
-import useUserData from "../../Hooks/useUserData";
+// import useUserData from "../../Hooks/useUserData";
 
 const MyEmployeeList = () => {
-    const [isAdmin] = useAdmin();
-    const [userData] = useUserData();
-    console.log(userData);
+    // const [isAdmin] = useAdmin();
+    // const [userData] = useUserData();
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
     const { refetch, data: employeeList = [] } = useQuery({
@@ -21,10 +20,7 @@ const MyEmployeeList = () => {
             return res.data
         }
     })
-
     const handleDelete = id => {
-        console.log(id);
-
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -38,7 +34,6 @@ const MyEmployeeList = () => {
                 axiosSecure.delete(`/delete/employee/${id}`)
                     .then(res => {
                         const data = res.data;
-                        console.log(data);
                         if (data.deletedCount > 0) {
                             Swal.fire(
                                 'Deleted!',
@@ -47,12 +42,10 @@ const MyEmployeeList = () => {
                             )
                             refetch()
                         }
-
                     })
             }
         })
     }
-    console.log(isAdmin);
     return (
         <div className="mt-20 mb-12">
               <Helmet>

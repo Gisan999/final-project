@@ -8,7 +8,6 @@ const SectionPackage = () => {
             backgroundRepeat: 'no-repeat'
         }}
             className='featured-item bg-fixed'>
-
            <div className="text-white bg-black bg-opacity-70">
            <div className="max-w-screen-xl mx-auto py-32 mb-12">
                 <div className="flex justify-center mb-10">
@@ -30,8 +29,6 @@ const SectionPackage = () => {
                                 <h2><span className="font-semibold text-lg">Price:</span> $15</h2>
                                 <div className="flex justify-end"><Link to={"/adminJoin"}><button className="btn btn-outline btn-info btn-sm px-7 ">purchase</button></Link></div>
                             </div>
-
-
                         </div>
                         <div className="relative flex flex-col text-white bg-white bg-opacity-30 shadow-md w-96 rounded-xl lg:mt-12">
                             <div className="p-6 space-y-3">
@@ -44,8 +41,6 @@ const SectionPackage = () => {
                                 <h2><span className="font-semibold text-lg">Price:</span> $8</h2>
                                 <div className="flex justify-end"><Link to={"/adminJoin"}><button className="btn btn-outline btn-info btn-sm px-7 ">purchase</button></Link></div>
                             </div>
-
-
                         </div>
                         <div className="relative flex flex-col text-white bg-white bg-opacity-30 shadow-md w-96 rounded-xl lg:mt-24">
                             <div className="p-6">
@@ -58,8 +53,6 @@ const SectionPackage = () => {
                                 <h2><span className="font-semibold text-lg">Price:</span> $5</h2>
                                 <div className="flex justify-end"><Link to={"/adminJoin"}><button className="btn btn-outline btn-info btn-sm px-7 ">purchase</button></Link></div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
